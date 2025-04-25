@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport" />
+  <title>청년 지원 프로그램</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/common.css" rel="stylesheet" /> <!-- 공통 스타일 -->
+  <style>
+    .program-details {
+      margin-top: 20px;
+    }
+    .program-details h5 {
+      font-weight: bold;
+    }
+    .program-card {
+      margin-bottom: 1rem;
+    }
+    .program-content {
+      display: none;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+    .program-content.active {
+      display: block;
+      background-color: #e9f7ef; /* 펼쳐진 항목 배경색 */
+    }
+
+    /* 프로그램 제목 클릭 시 색상 변경 */
+    .list-group-item.active {
+      background-color: #4CAF50; /* 클릭된 항목의 배경색 */
+      color: white; /* 텍스트 색상 변경 */
+    }
+
+    .list-group-item {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <!-- 앱 컨테이너 (390px 기준) -->
+  <div class="app-container">
+    <!-- 상단 바 -->
+    <nav class="navbar bg-white px-3 border-bottom">
+      <button class="btn btn-link px-0" onclick="history.back()">←</button>
+      <span class="mx-auto fw-bold">청년 지원 프로그램</span>
+      <div style="width: 40px;"></div>
+    </nav>
+
+    <!-- 청년 지원 프로그램 목록 -->
+    <div class="p-3 pb-5">
+      <div class="list-group">
+        <div class="list-group-item active fw-semibold" onclick="toggleDetails('program1')">
+          청년 취업지원금
+        </div>
+        <div id="program1" class="program-content">
+          <p>청년 취업지원금은 취업을 원하는 청년에게 일정 기간 동안 월급을 지원하는 프로그램입니다. 이를 통해 취업을 촉진하고, 직업 역량을 강화하는 기회를 제공합니다.</p>
+          <div class="mb-3">
+            <h6 class="fw-bold">지원 대상</h6>
+            <p>만 18세 이상 34세 이하 청년</p>
+          </div>
+          <div class="mb-3">
+            <h6 class="fw-bold">지원 내용</h6>
+            <p>최대 6개월 동안 매월 50만원 지원</p>
+          </div>
+          <div class="mb-3">
+            <h6 class="fw-bold">신청 방법</h6>
+            <p>온라인 신청서 제출 및 직업 능력 인증 필요</p>
+          </div>
+        </div>
+
+        <div class="list-group-item fw-semibold" onclick="toggleDetails('program2')">
+          청년 월세 지원
+        </div>
+        <div id="program2" class="program-content">
+          <p>청년 월세 지원은 일정 소득 이하의 청년에게 월세를 지원해 주는 제도입니다. 주거 안정성을 확보하는데 도움을 주며, 청년들의 삶의 질을 높이는 프로그램입니다.</p>
+          <div class="mb-3">
+            <h6 class="fw-bold">지원 대상</h6>
+            <p>만 19세 이상 34세 이하, 월세가 30만원 이하인 청년</p>
+          </div>
+          <div class="mb-3">
+            <h6 class="fw-bold">지원 내용</h6>
+            <p>월 최대 20만원의 월세 지원</p>
+          </div>
+          <div class="mb-3">
+            <h6 class="fw-bold">신청 방법</h6>
+            <p>온라인 신청 및 소득 증빙 서류 제출</p>
+          </div>
+        </div>
+
+        <div class="list-group-item fw-semibold" onclick="toggleDetails('program3')">
+          청년 기숙사 제공
+        </div>
+        <div id="program3" class="program-content">
+          <p>청년 기숙사 제공은 주거 문제가 있는 청년들에게 저렴한 가격으로 기숙사를 제공하는 프로그램입니다. 주거지를 안정적으로 제공하여 청년들의 삶의 질을 향상시킵니다.</p>
+          <div class="mb-3">
+            <h6 class="fw-bold">지원 대상</h6>
+            <p>만 18세 이상 34세 이하의 청년 중 주거지 마련이 어려운 자</p>
+          </div>
+          <div class="mb-3">
+            <h6 class="fw-bold">지원 내용</h6>
+            <p>저렴한 가격으로 청년 기숙사 제공</p>
+          </div>
+          <div class="mb-3">
+            <h6 class="fw-bold">신청 방법</h6>
+            <p>주거지 인증 및 온라인 신청 필요</p>
+          </div>
+        </div>
+
+        <div class="list-group-item fw-semibold" onclick="toggleDetails('program4')">
+          청년 창업 지원
+        </div>
+        <div id="program4" class="program-content">
+          <p>청년 창업 지원은 창업을 희망하는 청년들에게 초기 자금 및 창업 교육을 제공하여 성공적인 창업을 지원하는 프로그램입니다.</p>
+          <div class="mb-3">
+            <h6 class="fw-bold">지원 대상</h6>
+            <p>만 18세 이상 39세 이하의 청년 창업자</p>
+          </div>
+          <div class="mb-3">
+            <h6 class="fw-bold">지원 내용</h6>
+            <p>창업 자금 최대 500만원, 창업 교육 프로그램 제공</p>
+          </div>
+          <div class="mb-3">
+            <h6 class="fw-bold">신청 방법</h6>
+            <p>온라인 신청 및 창업 아이템 설명 필요</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 내비게이션 -->
+  <nav class="bottom-nav d-flex justify-content-around py-2">
+    <a href="index.html" class="nav-link text-center text-dark">
+      <div>🏠<br/>홈</div>
+    </a>
+    <a href="Category.html" class="nav-link text-center text-dark">
+      <div>📂<br/>카테고리</div>
+    </a>
+    <a href="Calc.html" class="nav-link text-center text-dark">
+      <div>🧮<br/>계산기</div>
+    </a>
+    <a href="MyWelf.html" class="nav-link text-center text-dark">
+      <div>❤️<br/>내 복지</div>
+    </a>
+    <a href="MyInfo.html" class="nav-link text-center text-dark">
+      <div>👤<br/>내 정보</div>
+    </a>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function toggleDetails(programId) {
+      // 모든 프로그램 세부 사항을 숨깁니다.
+      const allPrograms = document.querySelectorAll('.program-content');
+      allPrograms.forEach(program => program.classList.remove('active'));
+
+      // 클릭한 프로그램의 세부 사항을 펼칩니다.
+      const programContent = document.getElementById(programId);
+      programContent.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

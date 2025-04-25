@@ -1,0 +1,13 @@
+{
+    "title_signup": "회원가입",
+    "subtitle_signup": "복지 혜택을 쉽게 찾고, 내 삶에 맞게 누려보세요",
+    "label_name": "이름",
+    "label_email": "이메일",
+    "label_password": "비밀번호",
+    "label_confirmPassword": "비밀번호 확인",
+    "btn_signup": "가입하기",
+    "social_kakao": "카카오로 시작하기",
+    "social_naver": "네이버로 시작하기",
+    "login_link": "이미 계정이 있으신가요? 로그인"
+  }
+  

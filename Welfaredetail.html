@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>국가장학금</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/common.css" rel="stylesheet"/>
+</head>
+<body>
+
+  <div class="app-wrapper">
+    <!-- 상단 바 -->
+    <nav class="navbar bg-white px-2 border-bottom d-flex align-items-center justify-content-between position-relative">
+      <button class="btn btn-link px-0" onclick="history.back()">←</button>
+      
+      <span class="fw-bold position-absolute start-50 translate-middle-x">국가장학금</span>
+      
+      <button class="btn btn-link px-0" onclick="showCopiedToast()">공유</button>
+    </nav>
+
+
+    <!-- Toast 알림 -->
+    <div class="position-fixed start-50 translate-middle-x p-3" style="z-index: 1100; bottom: 70px;">
+      <div id="copyToast" class="toast align-items-center text-white bg-primary border-0"
+          role="alert" aria-live="assertive" aria-atomic="true"
+          style="width: 100%; max-width: 280px;">
+        <div class="d-flex">
+          <div class="toast-body text-truncate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+            링크가 복사되었습니다!
+          </div>
+          <button type="button" class="btn-close btn-close-white me-2 m-auto"
+                  data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 이미지 영역 -->
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="bg-secondary text-white text-center" style="height: 180px; line-height: 180px;">복지 대표 이미지</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 본문 콘텐츠 -->
+    <div class="p-3">
+      <h5 class="fw-bold">국가장학금</h5>
+      <p class="text-muted small">저소득 및 중산층 이하 대학생이 등록금을 부담 없이 학업에 전념할 수 있도록 지원하는 장학 제도입니다.</p>
+
+      <div class="mb-3">
+        <h6 class="fw-bold">지원 대상</h6>
+        <p class="small">소득 분위 8분위 이하의 국내 대학 재학생 (신입/편입/재입학 포함)</p>
+      </div>
+      <div class="mb-3">
+        <h6 class="fw-bold">지원 내용</h6>
+        <p class="small">등록금 전액 또는 일부 (국가장학금 I유형, II유형 포함)</p>
+      </div>
+      <div class="mb-3">
+        <h6 class="fw-bold">신청 기간</h6>
+        <p class="small">매년 상반기(1학기) 및 하반기(2학기) 일정에 따라 접수</p>
+      </div>
+
+      <div class="section-divider my-3 border-top"></div>
+
+      <h6 class="fw-bold">함께 신청한 복지</h6>
+      <div class="d-flex gap-2 overflow-auto">
+        <div class="border rounded p-2 bg-white" style="min-width: 160px;">
+          <p class="fw-bold small mb-1">다자녀 국가장학금</p>
+          <p class="text-warning small mb-0">⭐️ 추가 장학 지원</p>
+        </div>
+        <div class="border rounded p-2 bg-white" style="min-width: 160px;">
+          <p class="fw-bold small mb-1">중소기업 취업 연계</p>
+          <p class="text-muted small mb-0">희망시 추가 지원</p>
+        </div>
+      </div>
+
+      <div class="section-divider my-3 border-top"></div>
+
+      <div class="d-flex justify-content-between mb-3">
+        <button class="btn btn-outline-secondary w-50 me-2">문의하기</button>
+        <button class="btn btn-primary w-50">신청하러 가기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 하단 내비게이션 -->
+  <nav class="bottom-nav d-flex justify-content-around py-2">
+    <a href="index.html" class="nav-link text-center"><div>🏠<br>홈</div></a>
+    <a href="Category.html" class="nav-link text-center"><div>📂<br>카테고리</div></a>
+    <a href="Calc.html" class="nav-link text-center"><div>🧮<br>계산기</div></a>
+    <a href="MyWelf.html" class="nav-link text-center"><div>❤️<br>내 복지</div></a>
+    <a href="MyInfo.html" class="nav-link text-center"><div>👤<br>내 정보</div></a>
+  </nav>
+
+  <!-- 공유 기능 스크립트 -->
+  <script>
+    function showCopiedToast() {
+      const toastEl = document.getElementById('copyToast');
+      const toast = new bootstrap.Toast(toastEl, {delay : 3000});
+      toast.show();
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

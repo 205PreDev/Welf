@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <title>복지 검색</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="css/common.css" rel="stylesheet"/> <!-- 공통 CSS -->
+  <style>
+    .search-top {
+      position: sticky;
+      top: 0;
+      background: white;
+      padding: 1rem 1rem 0.5rem;
+      z-index: 100;
+      border-bottom: 1px solid #eee;
+    }
+    .search-input {
+      border: none;
+      border-bottom: 1px solid #ccc;
+      border-radius: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .search-input:focus {
+      box-shadow: none;
+      border-color: #007bff;
+    }
+    .recent-wrapper {
+      padding: 1rem;
+    }
+    .recent-label {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    .recent-term {
+      font-weight: 500;
+      color: #333;
+    }
+    #searchResults {
+      display: none;
+      padding: 1rem;
+    }
+    .result-item {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .result-item:last-child {
+      border-bottom: none;
+    }
+    .result-title {
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .result-desc {
+      font-size: 0.875rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-wrapper">
+    <!-- 검색 헤더 -->
+    <div class="search-top">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <a href="index.html" class="text-decoration-none text-dark fs-5">←</a>
+        <span class="fw-bold">복지 검색</span>
+        <span style="width: 24px;"></span>
+      </div>
+      <input type="text" id="searchInput" class="form-control search-input" placeholder="복지명 또는 키워드 입력" />
+    </div>
+
+    <!-- 최근 검색어 -->
+    <div id="recentWrapper" class="recent-wrapper">
+      <div class="recent-label">🔍 최근 검색어</div>
+      <div class="recent-term" id="recentTerm">국가장학금</div>
+    </div>
+
+    <!-- 검색 결과 리스트 -->
+    <div id="searchResults"></div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById("searchInput");
+    const searchResults = document.getElementById("searchResults");
+    const recentWrapper = document.getElementById("recentWrapper");
+    const recentTerm = document.getElementById("recentTerm");
+
+    const mockData = [
+      { title: "국가장학금", desc: "대학생을 위한 등록금 지원 복지 제도입니다.", link: "detail.html" },
+      { title: "청년 월세 지원", desc: "청년 대상 월세 최대 20만원 지원", link: "#" },
+      { title: "임산부 건강관리", desc: "임신/출산 관련 의료비 지원", link: "#" }
+    ];
+
+    searchInput.addEventListener("input", () => {
+      const keyword = searchInput.value.trim();
+      searchResults.innerHTML = "";
+
+      if (keyword.length === 0) {
+        searchResults.style.display = "none";
+        recentWrapper.style.display = "block";
+        return;
+      }
+
+      const filtered = mockData.filter(item =>
+        item.title.includes(keyword) || item.desc.includes(keyword)
+      );
+
+      recentWrapper.style.display = "none";
+      searchResults.style.display = "block";
+
+      if (filtered.length === 0) {
+        searchResults.innerHTML = `<p class="text-muted px-3">검색 결과가 없습니다.</p>`;
+      } else {
+        filtered.forEach(item => {
+          const resultDiv = document.createElement("div");
+          resultDiv.className = "result-item";
+          resultDiv.innerHTML = `
+            <a href="${item.link}" class="text-decoration-none text-dark d-block">
+              <div class="result-title">${item.title}</div>
+              <div class="result-desc">${item.desc}</div>
+            </a>
+          `;
+          searchResults.appendChild(resultDiv);
+        });
+        recentTerm.textContent = keyword;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+/* 공통 폰트 및 배경 */
+@font-face {
+  font-family: 'Noto Sans KR';
+  font-style: normal;
+  font-weight: 400;
+  src: url('..\assets\fonts\noto-sans-kr-v36-korean-regular.woff2') format('woff2');
+}
+
+body {
+  background-color: #e9ecef; /* PC용 바깥 회색 배경 */
+  font-family: 'Noto Sans KR', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* 모바일 앱 화면 고정 컨테이너 */
+.app-container,
+.app-wrapper {
+  max-width: 390px;
+  margin: 0 auto;
+  background-color: #ffffff; /* 내부 콘텐츠는 흰색 */
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 56px; /* 하단 내비게이션 고려 */
+}
+
+/* 하단 내비게이션 공통 스타일 */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 390px;
+  background-color: #fff;
+  border-top: 1px solid #dee2e6;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+.bottom-nav .nav-link {
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* 추천 카드 및 섹션 제목 */
+.recommend-card {
+  min-height: 100px;
+}
+.section-title {
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* 입력 폼 기본값 */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+select,
+textarea {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 공통 버튼 색상 */
+.btn-primary {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+.btn-primary:hover {
+  background-color: #45a049;
+  border-color: #45a049;
+}
