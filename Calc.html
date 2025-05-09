@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
   <title>소득분위 계산기</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-  <link href="css/common.css" rel="stylesheet"/> <!-- 공통 스타일 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/common.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -18,17 +18,20 @@
     </div>
 
     <!-- 계산기 폼 -->
-    <form>
+    <form onsubmit="return calcLevel(event)">
       <div class="mb-3">
         <label for="income" class="form-label">연 소득 (만원)</label>
-        <input type="number" id="income" class="form-control" placeholder="예: 3000"/>
+        <input type="number" id="income" class="form-control" placeholder="예: 3000" required />
       </div>
       <div class="mb-3">
         <label for="family" class="form-label">가구원 수</label>
-        <input type="number" id="family" class="form-control" placeholder="예: 4"/>
+        <input type="number" id="family" class="form-control" placeholder="예: 4" required />
       </div>
       <button type="submit" class="btn btn-primary w-100">소득분위 계산하기</button>
     </form>
+
+    <!-- 결과 출력 -->
+    <div id="result" class="mt-4 alert alert-info d-none"></div>
   </div>
 
   <!-- 하단 내비게이션 -->
@@ -49,6 +52,55 @@
       <div>👤<br/>내 정보</div>
     </a>
   </nav>
+
+  <!-- 스크립트 -->
+  <script>
+    const 기준중위소득표 = {
+      1: 2194000,
+      2: 3652000,
+      3: 4688000,
+      4: 5698000
+    };
+
+    function 소득분위판정(월소득, 가구수) {
+      const 기준소득 = 기준중위소득표[gaguSanitize(가구수)] || 기준중위소득표[4];
+      const 비율 = (월소득 / 기준소득) * 100;
+
+      if (비율 <= 30) return 1;
+      else if (비율 <= 50) return 2;
+      else if (비율 <= 75) return 3;
+      else if (비율 <= 100) return 4;
+      else if (비율 <= 125) return 6;
+      else if (비율 <= 150) return 7;
+      else if (비율 <= 175) return 8;
+      else if (비율 <= 200) return 9;
+      else return 10;
+    }
+
+    function gaguSanitize(n) {
+      return Math.min(Math.max(parseInt(n), 1), 4);
+    }
+
+    function calcLevel(event) {
+      event.preventDefault();
+      const income = parseFloat(document.getElementById("income").value); // 연소득 (만원)
+      const family = parseInt(document.getElementById("family").value);
+
+      if (income <= 0 || family <= 0) {
+        alert("올바른 값을 입력하세요.");
+        return false;
+      }
+
+      const 월소득원 = (income * 10000) / 12;
+      const 분위 = 소득분위판정(월소득원, family);
+
+      const resultBox = document.getElementById("result");
+      resultBox.textContent = `예상 소득분위는 ${분위}분위입니다.`;
+      resultBox.classList.remove("d-none");
+
+      return false;
+    }
+  </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
